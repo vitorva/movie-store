@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RazorPagesMovie.Models;
 
@@ -16,6 +18,8 @@ public class Movie
 
     public int Id { get; set; }
     public string? Title { get; set; }
+
+    [Display(Name = "Release Date")]
     [DataType(DataType.Date)]
     public DateTime ReleaseDate
     {
@@ -23,5 +27,7 @@ public class Movie
         set { releaseDate = DateTime.SpecifyKind(value, DateTimeKind.Utc); }
     }
     public string? Genre { get; set; }
+
+    [Column(TypeName = "decimal(18, 2)")]
     public decimal Price { get; set; }
 }
